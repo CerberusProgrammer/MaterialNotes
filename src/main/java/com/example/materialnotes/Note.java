@@ -2,13 +2,21 @@ package com.example.materialnotes;
 
 import org.joda.time.DateTime;
 
-public class Notes {
+public class Note {
 
     DateTime dateTime;
+
     String title;
     String content;
 
-    public Notes(String title, String content) {
+    public Note(String title, String content) {
+
+        DateTime dt = new DateTime();
+
+        int year = dt.getYear();
+        int month = dt.getMonthOfYear();
+        int day = dt.getDayOfMonth();
+
         this.dateTime = new DateTime();
         this.title = title;
         this.content = content;
