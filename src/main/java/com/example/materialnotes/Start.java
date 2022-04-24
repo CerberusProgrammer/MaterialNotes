@@ -22,3 +22,12 @@ public class Start extends Application {
         launch();
     }
 }
+
+/*
+<MFXCircleToggleNode text="hello" accessibleRole="BUTTON" contentDisplay="TOP" gap="0.0" graphicTextGap="1.0" layoutX="419.0" layoutY="4.0" prefHeight="42.0" prefWidth="86.0" size="20.0">
+            </MFXCircleToggleNode>
+
+
+            <MFXButton buttonType="RAISED" depthLevel="LEVEL1" rippleColor="#1fa8d9" text="Notes" />
+            <MFXButton buttonType="RAISED" depthLevel="LEVEL1" rippleColor="#1fa8d9" text="Search" />
+ */

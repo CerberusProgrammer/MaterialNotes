@@ -27,8 +27,8 @@
     <orderEntry type="library" name="Maven: joda-time:joda-time:2.10.14" level="project" />
     <orderEntry type="library" name="Maven: io.github.palexdev:materialfx:11.13.5" level="project" />
     <orderEntry type="library" name="Maven: io.github.palexdev:virtualizedfx:11.2.6" level="project" />
-    <orderEntry type="library" name="Maven: org.kordamp.ikonli:ikonli-win10-pack:12.3.1" level="project" />
+    <orderEntry type="library" name="Maven: org.kordamp.ikonli:ikonli-materialdesign2-pack:12.3.1" level="project" />
     <orderEntry type="library" name="Maven: org.kordamp.ikonli:ikonli-core:12.3.1" level="project" />
-    <orderEntry type="library" name="Maven: org.kordamp.ikonli:ikonli-javafx:1.9.0" level="project" />
+    <orderEntry type="library" name="Maven: org.kordamp.ikonli:ikonli-javafx:12.3.1" level="project" />
   </component>
 </module>

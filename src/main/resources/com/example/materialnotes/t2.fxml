@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.materialnotes.App">
+    <top>
+        <Pane prefHeight="57.0" prefWidth="500.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="34.0" layoutY="15.0" text="Material Notes" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Button layoutX="424.0" layoutY="16.0" mnemonicParsing="false" text="add" />
+            </children>
+        </Pane>
+    </top>
+    <center>
+        <SplitPane disable="true" dividerPositions="1.0" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <items>
+                <Pane prefHeight="200.0" prefWidth="200.0" />
+                <Pane prefHeight="200.0" prefWidth="200.0" />
+            </items>
+        </SplitPane>
+    </center>
+    <bottom>
+        <HBox fx:id="bottomBar" alignment="CENTER" prefHeight="58.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+         <children>
+            <Button mnemonicParsing="false" text="Notes" />
+            <Button mnemonicParsing="false" text="Search" />
+         </children></HBox>
+    </bottom>
+</BorderPane>
