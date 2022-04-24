@@ -1,5 +1,6 @@
 package com.example.materialnotes;
 
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,13 +20,17 @@ public class App implements Initializable {
 
     public Circle circle;
     @FXML
+    public MFXTextField title;
+    @FXML
+    public MFXTextField content;
+    @FXML
     private HBox bottomBar;
     @FXML
-    private ScrollPane createPane;
+    private Pane createPane;
     @FXML
     private ScrollPane notesPane;
     @FXML
-    private ScrollPane searchPane;
+    private Pane searchPane;
 
     @FXML
     void createNote(ActionEvent event) {
