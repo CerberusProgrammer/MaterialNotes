@@ -7,8 +7,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
@@ -20,21 +23,32 @@ public class App implements Initializable {
 
     public Circle circle;
     @FXML
-    public MFXTextField title;
-    @FXML
-    public MFXTextField content;
-    @FXML
     private HBox bottomBar;
     @FXML
     private Pane createPane;
     @FXML
+    private FlowPane flowPane;
+    @FXML
     private ScrollPane notesPane;
     @FXML
     private Pane searchPane;
+    @FXML
+    private MFXTextField title;
 
     @FXML
     void createNote(ActionEvent event) {
+        Pane note = new Pane();
+        note.prefWidth(50);
+        note.prefHeight(50);
+        note.setVisible(true);
+        note.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0,0,0)");
+        note.setStyle("-fx-background-color: red");
 
+        Circle circle = new Circle();
+        circle.setRadius(10);
+        circle.setFill(Color.RED);
+        flowPane.getChildren().add(circle);
+        flowPane.getChildren().add(note);
     }
 
     @FXML
@@ -62,7 +76,7 @@ public class App implements Initializable {
         TranslateTransition search = new TranslateTransition(new Duration(250), searchPane);
         TranslateTransition create = new TranslateTransition(new Duration(250), createPane);
         create.setToX(0);
-        search.setToX(-498);
+        search.setToX(-514);
         create.play();
         search.play();
     }
@@ -71,8 +85,8 @@ public class App implements Initializable {
     void displayCreateNote(ActionEvent event) {
         TranslateTransition create = new TranslateTransition(new Duration(250), createPane);
         TranslateTransition search = new TranslateTransition(new Duration(250), searchPane);
-        search.setToX(-498);
-        create.setToX(-498);
+        search.setToX(-514);
+        create.setToX(-514);
         search.play();
         create.play();
     }
