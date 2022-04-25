@@ -1,10 +1,15 @@
 package com.example.materialnotes;
 
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import io.github.palexdev.materialfx.utils.TextUtils;
 import javafx.animation.TranslateTransition;
+import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
@@ -20,6 +25,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.concurrent.Callable;
 
 public class App implements Initializable {
 
@@ -46,6 +52,12 @@ public class App implements Initializable {
         note.setTitle(title.getText());
         note.setContent(content.getText());
 
+        title.setText("");
+        content.setText("");
+
+        if (note.getContent().isBlank() && note.getTitle().isBlank())
+            return;
+
         notes.add(note);
 
         AnchorPane anchorPane = new AnchorPane();
@@ -57,6 +69,7 @@ public class App implements Initializable {
         Label title = new Label(note.getTitle());
         title.setLayoutX(14);
         title.setLayoutY(14);
+        title.setWrapText(true);
         title.setFont(new Font(16));
 
         TextArea content = new TextArea(note.getContent());
