@@ -1,12 +1,16 @@
 package com.example.materialnotes;
 
+import io.github.palexdev.materialfx.controls.MFXIconWrapper;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import io.github.palexdev.materialfx.dialogs.MFXGenericDialog;
 import io.github.palexdev.materialfx.utils.TextUtils;
 import javafx.animation.TranslateTransition;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -14,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -55,51 +60,56 @@ public class App implements Initializable {
         title.setText("");
         content.setText("");
 
-        if (note.getContent().isBlank() && note.getTitle().isBlank())
+        if (note.getContent().isBlank() && note.getTitle().isBlank()) {
+            displayNotes();
             return;
+        }
 
         notes.add(note);
 
-        AnchorPane anchorPane = new AnchorPane();
-        anchorPane.setId("note");
-        anchorPane.setPrefWidth(220);
-        anchorPane.setPrefHeight(200);
-        anchorPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("note.css")).toString());
+        MFXGenericDialog notePane = new MFXGenericDialog();
+        notePane.setHeaderText(note.getTitle());
+        notePane.setContentText(note.getContent());
+        notePane.setShowMinimize(false);
+        notePane.setPrefSize(220, 200);
+        notePane.setMinSize(220, 200);
 
-        Label title = new Label(note.getTitle());
-        title.setLayoutX(14);
-        title.setLayoutY(14);
-        title.setWrapText(true);
-        title.setFont(new Font(16));
+        notePane.setOnClose(mouseEvent -> {
+            // Delete Note
+            System.out.println("Eliminado");
+            System.out.println(mouseEvent.getSource());
+        });
 
-        TextArea content = new TextArea(note.getContent());
-        content.setLayoutX(10);
-        content.setLayoutY(43);
-        content.setPrefHeight(144);
-        content.setPrefWidth(200);
-        content.setWrapText(true);
-        content.setEditable(false);
+        notePane.setOnAlwaysOnTop(mouseEvent -> {
+            // Edit Note
+            System.out.println("editado");
+        });
 
-        anchorPane.getChildren().add(title);
-        anchorPane.getChildren().add(content);
-
-        flowPane.getChildren().add(anchorPane);
+        flowPane.getChildren().add(notePane);
 
         displayNotes();
     }
 
-    @FXML
     void deleteNote(ActionEvent event) {
 
     }
 
-    @FXML
     void editNote(ActionEvent event) {
 
     }
 
     @FXML
     void displayNotes() {
+        TranslateTransition search = new TranslateTransition(new Duration(250), searchPane);
+        TranslateTransition create = new TranslateTransition(new Duration(250), createPane);
+        create.setToX(10);
+        search.setToX(10);
+        create.play();
+        search.play();
+    }
+
+    @FXML
+    void displayNotes(ActionEvent event) {
         TranslateTransition search = new TranslateTransition(new Duration(250), searchPane);
         TranslateTransition create = new TranslateTransition(new Duration(250), createPane);
         create.setToX(10);
