@@ -25,7 +25,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -76,17 +75,20 @@ public class App implements Initializable {
 
         notePane.setOnClose(mouseEvent -> {
             // Delete Note
-            System.out.println("Eliminado");
-            System.out.println(mouseEvent.getSource());
+            notes.remove(note);
+            flowPane.getChildren().remove(notePane);
         });
 
         notePane.setOnAlwaysOnTop(mouseEvent -> {
             // Edit Note
-            System.out.println("editado");
+            notes.remove(note);
+            flowPane.getChildren().remove(notePane);
+            title.setText(note.getTitle());
+            content.setText(note.getContent());
+            displayCreateNote();
         });
 
         flowPane.getChildren().add(notePane);
-
         displayNotes();
     }
 
@@ -129,7 +131,7 @@ public class App implements Initializable {
     }
 
     @FXML
-    void displayCreateNote(ActionEvent event) {
+    void displayCreateNote() {
         TranslateTransition create = new TranslateTransition(new Duration(250), createPane);
         TranslateTransition search = new TranslateTransition(new Duration(250), searchPane);
         search.setToX(-514);
