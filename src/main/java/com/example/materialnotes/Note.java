@@ -4,30 +4,40 @@ import org.joda.time.DateTime;
 
 public class Note {
 
-    DateTime dateTime;
-
+    String date;
     String title;
     String content;
 
-    public Note(String title, String content) {
-
+    public Note() {
         DateTime dt = new DateTime();
 
         int year = dt.getYear();
         int month = dt.getMonthOfYear();
         int day = dt.getDayOfMonth();
 
-        this.dateTime = new DateTime();
+        this.date = month + "/" + day + "/" + year;
+        this.title = "";
+        this.content = "";
+    }
+
+    public Note(String title, String content) {
+        DateTime dt = new DateTime();
+
+        int year = dt.getYear();
+        int month = dt.getMonthOfYear();
+        int day = dt.getDayOfMonth();
+
+        this.date = month + "/" + day + "/" + year;
         this.title = title;
         this.content = content;
     }
 
-    public DateTime getDateTime() {
-        return dateTime;
+    public String getDate() {
+        return date;
     }
 
-    public void setDateTime(DateTime dateTime) {
-        this.dateTime = dateTime;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getTitle() {

@@ -5,23 +5,26 @@ import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class App implements Initializable {
 
-    public Circle circle;
+    @FXML
+    public TextArea content;
     @FXML
     private HBox bottomBar;
     @FXML
@@ -35,20 +38,41 @@ public class App implements Initializable {
     @FXML
     private MFXTextField title;
 
+    ArrayList<Note> notes = new ArrayList<>();
+
     @FXML
     void createNote(ActionEvent event) {
-        Pane note = new Pane();
-        note.prefWidth(50);
-        note.prefHeight(50);
-        note.setVisible(true);
-        note.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0,0,0)");
-        note.setStyle("-fx-background-color: red");
+        Note note = new Note();
+        note.setTitle(title.getText());
+        note.setContent(content.getText());
 
-        Circle circle = new Circle();
-        circle.setRadius(10);
-        circle.setFill(Color.RED);
-        flowPane.getChildren().add(circle);
-        flowPane.getChildren().add(note);
+        notes.add(note);
+
+        AnchorPane anchorPane = new AnchorPane();
+        anchorPane.setId("note");
+        anchorPane.setPrefWidth(220);
+        anchorPane.setPrefHeight(200);
+        anchorPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("note.css")).toString());
+
+        Label title = new Label(note.getTitle());
+        title.setLayoutX(14);
+        title.setLayoutY(14);
+        title.setFont(new Font(16));
+
+        TextArea content = new TextArea(note.getContent());
+        content.setLayoutX(10);
+        content.setLayoutY(43);
+        content.setPrefHeight(144);
+        content.setPrefWidth(200);
+        content.setWrapText(true);
+        content.setEditable(false);
+
+        anchorPane.getChildren().add(title);
+        anchorPane.getChildren().add(content);
+
+        flowPane.getChildren().add(anchorPane);
+
+        displayNotes();
     }
 
     @FXML
@@ -62,7 +86,7 @@ public class App implements Initializable {
     }
 
     @FXML
-    void displayNotes(ActionEvent event) {
+    void displayNotes() {
         TranslateTransition search = new TranslateTransition(new Duration(250), searchPane);
         TranslateTransition create = new TranslateTransition(new Duration(250), createPane);
         create.setToX(10);
