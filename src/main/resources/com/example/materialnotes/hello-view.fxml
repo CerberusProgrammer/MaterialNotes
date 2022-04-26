@@ -42,12 +42,12 @@
             <textFill>
                <Color red="0.17105263471603394" green="0.17105263471603394" blue="0.17105263471603394" opacity="0.8700000047683716" />
             </textFill></MFXTextField>
-         <Button layoutX="404.0" layoutY="34.0" onAction="#createNote" prefHeight="49.0" prefWidth="52.0" text="add" />
          <TextArea fx:id="content" layoutX="25.0" layoutY="103.0" prefHeight="442.0" prefWidth="431.0" wrapText="true">
             <font>
                <Font size="16.0" />
             </font>
          </TextArea>
+         <Button layoutX="404.0" layoutY="34.0" onAction="#createNote" prefHeight="49.0" prefWidth="52.0" text="add" />
       </children>
    </Pane>
 

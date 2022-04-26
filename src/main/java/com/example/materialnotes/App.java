@@ -88,22 +88,7 @@ public class App implements Initializable {
             displayCreateNote();
         });
 
-        flowPane.getChildren().add(notePane);
-
-        ArrayList<Node> arrayList = new ArrayList<>();
-        arrayList.addAll(flowPane.getChildren());
-
-
-        for (int i = 0; i < flowPane.getChildren().size(); i++) {
-            flowPane.getChildren().remove(i);
-        }
-
-        Collections.reverse(arrayList);
-
-        //for (Node n : arrayList) {
-        //    flowPane.getChildren().add(n);
-        //}
-
+        flowPane.getChildren().add(0, notePane);
         displayNotes();
     }
 
@@ -161,5 +146,7 @@ public class App implements Initializable {
         TranslateTransition create = new TranslateTransition(new Duration(250), createPane);
         search.setToX(10);
         create.setToX(10);
+
+        createPane.getStylesheets().add(getClass().getResource("note.css").toExternalForm());
     }
 }
