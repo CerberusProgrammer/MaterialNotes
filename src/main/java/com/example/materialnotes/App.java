@@ -8,6 +8,8 @@ import javafx.animation.TranslateTransition;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -26,9 +28,7 @@ import javafx.scene.text.Font;
 import javafx.util.Duration;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.concurrent.Callable;
 
 public class App implements Initializable {
@@ -89,6 +89,21 @@ public class App implements Initializable {
         });
 
         flowPane.getChildren().add(notePane);
+
+        ArrayList<Node> arrayList = new ArrayList<>();
+        arrayList.addAll(flowPane.getChildren());
+
+
+        for (int i = 0; i < flowPane.getChildren().size(); i++) {
+            flowPane.getChildren().remove(i);
+        }
+
+        Collections.reverse(arrayList);
+
+        //for (Node n : arrayList) {
+        //    flowPane.getChildren().add(n);
+        //}
+
         displayNotes();
     }
 
